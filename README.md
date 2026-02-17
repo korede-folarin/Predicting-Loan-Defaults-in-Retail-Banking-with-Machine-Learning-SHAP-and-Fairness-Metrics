@@ -10,7 +10,7 @@
 
 ---
 
-## 📌 Overview
+##  Overview
 
 Loan default prediction is one of the most consequential tasks in retail banking — a missed default costs the bank, an unfair rejection costs the customer. This project tackles both problems.
 
@@ -35,7 +35,7 @@ Six research hypotheses are formally tested using statistical significance tests
 
 ---
 
-## 🗂️ Repository Structure
+##  Repository Structure
 
 ```
 📦 loan-default-prediction/
