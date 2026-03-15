@@ -12,17 +12,17 @@
 
 ##  Overview
 
-Loan default prediction is one of the most consequential tasks in retail banking — a missed default costs the bank, an unfair rejection costs the customer. This project tackles both problems.
+Loan default prediction is one of the most consequential tasks in retail banking , a missed default costs the bank, an unfair rejection costs the customer. This project tackles both problems.
 
-It builds a full machine learning pipeline that not only **predicts loan defaults with high accuracy**, but also **explains why** each prediction was made using SHAP values, and **audits whether the model treats different demographic groups fairly**. The goal is a model that is accurate, transparent, and responsible.
+This project builds a full machine learning pipeline that not only **predicts loan defaults with high accuracy**, but also **explains why** each prediction was made using SHAP values, and **audits whether the model treats different demographic groups fairly**. The goal is a model that is accurate, transparent, and responsible.
 
-Four models are trained and rigorously compared — from a simple logistic regression baseline to gradient boosting ensembles — using a credit risk dataset with real-world borrower financial profiles. The best model (LightGBM) achieves over **93% ROC-AUC**. All predictions are then dissected using SHAP analysis at both global and individual levels, and fairness metrics are computed across age and income groups.
+Four models are trained and rigorously compared  from a simple logistic regression baseline to gradient boosting ensembles using a credit risk dataset with real-world borrower financial profiles. The best model (LightGBM) achieves over **93% ROC-AUC**. All predictions are then dissected using SHAP analysis at both global and individual levels, and fairness metrics are computed across age and income groups.
 
 Six research hypotheses are formally tested using statistical significance tests throughout the pipeline.
 
 ---
 
-## 🎯 Research Hypotheses
+## Project Hypotheses
 
 | ID | Hypothesis | Test Method |
 |----|-----------|-------------|
@@ -84,10 +84,12 @@ The project uses a **credit risk dataset** (`credit_risk_dataset.csv`) with borr
 | `loan_percent_income` | Numeric | Loan amount as % of income |
 | `cb_person_default_on_file` | Categorical | Historical default flag (Y/N) |
 | `cb_person_cred_hist_length` | Numeric | Credit history length in years |
-| `loan_status` | Binary | **Target** — 0: No Default, 1: Default |
+| `loan_status` | Binary | **Target**  0: No Default, 1: Default |
 
-> ⚠️ The raw dataset is not included in this repository. Source an appropriate credit risk dataset and place it in your Google Drive or local directory before running the notebook.
 
+> https://www.kaggle.com/datasets/laotse/credit-risk-dataset
+> 
+> The link to the raw dataset is included in this repository. 
 ---
 
 ## ⚙️ Pipeline — Detailed Breakdown
@@ -95,13 +97,13 @@ The project uses a **credit risk dataset** (`credit_risk_dataset.csv`) with borr
 ### Stage 1 — Data Preprocessing
 
 **Missing Value Imputation:**
-- Numeric columns → `SimpleImputer(strategy='median')` — chosen for robustness against skewed income/loan distributions
+- Numeric columns → `SimpleImputer(strategy='median')`,  chosen for robustness against skewed income/loan distributions
 - Categorical columns → `SimpleImputer(strategy='most_frequent')`
 
 **Outlier Detection & Treatment:**
 - Applied to: `person_age`, `person_income`, `loan_amnt`, `loan_int_rate`
 - Method: IQR-based detection using `Q1 - 3×IQR` and `Q3 + 3×IQR` bounds
-- Treatment: **Winsorization** — outliers capped at bounds rather than removed, preserving sample size
+- Treatment: **Winsorization**, outliers capped at bounds rather than removed, preserving sample size
 
 ```python
 Q1 = df[col].quantile(0.25)
