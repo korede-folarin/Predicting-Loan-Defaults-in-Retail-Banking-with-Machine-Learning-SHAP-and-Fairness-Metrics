@@ -118,8 +118,8 @@ y.value_counts()
 # 0 (No Default): majority class
 # 1 (Default):    minority class
 # Class imbalance handled via class_weight='balanced' in applicable models
-
-<Figure size 800x500 with 1 Axes>
+```
+![Target Distribution](https://raw.githubusercontent.com/korede-folarin/IMAGES-FOR-FAIRNESS-PROJECT-/main/images/targetclasses.png)
 
 ```
 
